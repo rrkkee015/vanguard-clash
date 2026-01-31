@@ -11,7 +11,7 @@ export class PreloadScene extends Phaser.Scene {
     const cy = GAME_HEIGHT / 2;
 
     // Simple loading screen
-    const title = this.add.text(cx, cy - 40, 'BATTLEHEART', {
+    const title = this.add.text(cx, cy - 40, 'VANGUARD CLASH', {
       fontFamily: 'Arial Black, Arial',
       fontSize: '48px',
       color: '#ffffff',
