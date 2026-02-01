@@ -63,14 +63,13 @@ export class CommandSystem {
   }
 
   private selectHero(hero: Hero): void {
+    if (this.selectedHero === hero) {
+      return;  // 이미 선택된 히어로 — 선택 유지
+    }
+
     if (this.selectedHero) {
       this.selectedHero.deselect();
       EventBus.emit(Events.HERO_DESELECTED, { hero: this.selectedHero });
-    }
-
-    if (this.selectedHero === hero) {
-      this.selectedHero = null;
-      return;
     }
 
     this.selectedHero = hero;
