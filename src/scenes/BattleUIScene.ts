@@ -39,6 +39,11 @@ export class BattleUIScene extends Phaser.Scene {
   }
 
   create(): void {
+    // Reset state for restart
+    this.portraits = [];
+    this.skillButtons = [];
+    this.selectedHeroId = null;
+
     // Wave indicator
     this.waveIndicator = new WaveIndicator(this);
 
@@ -47,6 +52,9 @@ export class BattleUIScene extends Phaser.Scene {
 
     // Setup event listeners
     this.setupEvents();
+
+    // Clean up EventBus listeners when scene shuts down
+    this.events.on('shutdown', this.onShutdown, this);
   }
 
   private createPortraits(): void {
@@ -184,6 +192,17 @@ export class BattleUIScene extends Phaser.Scene {
         }
       }
     });
+  }
+
+  private onShutdown(): void {
+    EventBus.removeAllListeners(Events.HERO_SELECTED);
+    EventBus.removeAllListeners(Events.HERO_DESELECTED);
+    EventBus.removeAllListeners(Events.WAVE_START);
+    EventBus.removeAllListeners(Events.WAVE_CLEAR);
+    EventBus.removeAllListeners(Events.ALL_WAVES_CLEAR);
+    EventBus.removeAllListeners(Events.ALL_HEROES_DEAD);
+    EventBus.removeAllListeners(Events.HERO_DIED);
+    EventBus.removeAllListeners(Events.SKILL_USED);
   }
 
   update(_time: number, delta: number): void {

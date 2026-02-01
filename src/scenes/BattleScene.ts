@@ -26,6 +26,9 @@ export class BattleScene extends Phaser.Scene {
   }
 
   create(): void {
+    // Reset state for restart
+    this.heroes = [];
+
     // Background
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x2d5a27)
       .setDepth(DEPTH.BACKGROUND);
@@ -121,6 +124,7 @@ export class BattleScene extends Phaser.Scene {
     EventBus.off(Events.HERO_DIED, this.onHeroDied, this);
     EventBus.removeAllListeners(Events.SKILL_BUTTON_PRESSED);
     this.scene.stop('BattleUIScene');
+    this.commandSystem.destroy();
     this.combatSystem.clearProjectiles();
     this.commandIndicator.destroy();
   }

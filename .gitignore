@@ -1,6 +1,7 @@
 node_modules
 dist
 .DS_Store
+.claude
 public/assets/Arrow(Projectile)
 public/assets/Aseprite file
 public/assets/Characters(100x100)
