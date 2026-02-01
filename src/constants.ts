@@ -52,7 +52,7 @@ export const ENEMY_MIN_Y = 200;
 export const ENEMY_MAX_Y = 650;
 
 // UI
-export const PORTRAIT_SIZE = 60;
+export const PORTRAIT_SIZE = 80;
 export const SKILL_BUTTON_SIZE = 50;
 export const UI_PADDING = 10;
 
